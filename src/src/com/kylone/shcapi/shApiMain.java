@@ -82,18 +82,18 @@ public class shApiMain {
         SHC_OK          : calling function successful
         SHC_FAIL        : calling function get failed
 
-      shconnect() function may return following values in addition to above codes;
-      shcbconnectfailed() callback function also will be triggered with such codes
+      The method shApiMain.shconnect() may return following values in addition to above
+      codes and shApiMain.shcbconnectfailed() callback method will be triggered accordingly.
 
         SHC_UNSUPPORTED_PLATFORM : this device is not supported by the server
         SHC_L3_DENIED            : accessing through routed networks are not allowed
         SHC_DEVICE_DISABLED      : this device status is disabled on server
    */
-   public static final int SHC_OK = 0;
-   public static final int SHC_FAIL = -1;
-   public static final int SHC_UNSUPPORTED_PLATFORM = 1;
-   public static final int SHC_L3_DENIED = 2;
-   public static final int SHC_DEVICE_DISABLED = 3;
+   public static final int SHC_OK = 0;      // calling function successful
+   public static final int SHC_FAIL = -1;   // calling function get failed
+   public static final int SHC_UNSUPPORTED_PLATFORM = 1; // device or platform is not supported
+   public static final int SHC_L3_DENIED = 2; // access through routed networks not allowed
+   public static final int SHC_DEVICE_DISABLED = 3; // device status is disabled on server side
 
    /*
       There are only two options used in this API, which are;
@@ -107,18 +107,18 @@ public class shApiMain {
       SHC_OPT_DONOTCACHE: Media files will not be cached and they will be downloaded
       from server every time.
    */
-   public static final int SHC_OPT_DOCACHE = 1;
-   public static final int SHC_OPT_DONOTCACHE = 2;
+   public static final int SHC_OPT_DOCACHE = 1; // Store remote content as cache
+   public static final int SHC_OPT_DONOTCACHE = 2; // Disable caching
 
    /*
-      When a server sent a message, API will triggers a callback function with message
-      as String argument. Below definitions are for messages sent by the server;
+      When server sends a message, API triggers a callback method with String
+      message argument. Following messages can be sent by the server;
 
-         import: Update Message (Banner Text)
-         commit: Restart Application (Commit launched on server)
-         kill  : Suspend (App may get suspended or quits, "commit" should restart it)
-         reboot: Reboot System
-         clean : Update Firmware (App will update itself, cleans the cache etc.)
+      import  Update Message (Banner Text)
+      commit  Reload the content or Restart the Application (Commit launched on server side)
+      kill    Suspend (app may get suspended or quits, "commit" should restart it)
+      reboot  Reboot the system
+      clean   Update the firmware (custom application will update itself, cleans the cache etc.)
    */
    public static final String SHC_MESSAGE_BANNERTEXT = "import";
    public static final String SHC_MESSAGE_RESTART = "commit";
@@ -127,14 +127,14 @@ public class shApiMain {
    public static final String SHC_MESSAGE_FWUPDATE = "clean";
 
    /*
-      There are a few types associated with data fetched from the server:
+      There are a few variables associated with data fetched from the server:
 
       - Configuration is saved in a hashtable called "tableconfig"
       - Content is saved in ContentList struct as a class "contentlist"
       - Weather information will be stored in WeatherItem "weatherlist"
 
-      There is also required functions implemented to access such data from object
-      itself from separated API functions.
+      There is also required methods implemented to access such data from 
+      the object itself.
    */
    private static Hashtable<String, String> tableconfig = null;
    public static ContentList contentlist = null;
@@ -165,11 +165,11 @@ public class shApiMain {
 
    /*
       Kylone server will always send data in XML format. After doing request to server,
-      resulting XML data will be converted to structured data using below classes which are
-      implemented to access and use content data easily with other UI components.
+      resulting XML data will be converted to a structured data using such classes which are
+      implemented in this API to access and use content data easily with other UI components.
 
-      Custom applications may directly use such resulting XML data instead of following
-      classes when required also.
+      Custom applications may directly use such resulting XML data instead of using ready
+      to use classes when necessary.
 
       ContentAttribute: list of properties of a content item such as name, album, band of
       a music item.
@@ -196,18 +196,29 @@ public class shApiMain {
       public int size() {
          return arglist.size();
       }
+      // Returns an Enumeration object to get a list of keys of attributes in the object.
       public Enumeration<String> keys() {
          return arglist.keys();
       }
       public void put(String key, String val) {
         arglist.put(key, val);
       }
+      // Returns the value of attribute with given name.
       public String get(String key) {
         return arglist.get(key);
       }
+      // Returns the value of attribute with given index
       public String get(int idx) {
          return (idx < arglist.size()) ? arglist.get(index[idx]) : null;
       }
+      /*
+         Returns keys as a string list
+         This function will be used in conjunction with String[] returned by the getList()
+         method and the index value will be same with the index value of returning String[]
+         object of getList() method. For example, custom application may use the getList()
+         output in a ListView and then it may get particular value of an attribute by
+         using the index of the list-item.
+      */
       public String[] getList() {
          return index;
       }
@@ -218,8 +229,6 @@ public class shApiMain {
 
       All properties will be stored as ContentAttribute value in hashtable with String keys.
       It is possible to access to a property of an item directy using this class.
-
-      All items will have category ID with "cat" property.
    */
    public class ContentItem {
       private Hashtable<String, ContentAttribute> itmlist = new Hashtable<String, ContentAttribute>();

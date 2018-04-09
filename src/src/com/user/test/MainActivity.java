@@ -61,7 +61,7 @@ import org.w3c.dom.NodeList;
 import com.kylone.shcapi.shApiMain;
 
 public class MainActivity extends Activity {
-   private static final String targetHost = "10.72.0.2";
+   private static final String targetHost = "10.47.48.1";
    private static MainActivity m_instance;
    private static Context m_context;
    private static Handler m_handler;
