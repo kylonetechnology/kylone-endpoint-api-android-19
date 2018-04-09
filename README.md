@@ -1,5 +1,5 @@
 # Kylone Endpoint API for Android-19
-Kylone provides an Endpoint API for developers to help creating a custom software to use with Kylone MicroCMS server including accessing and utilising several types of content related data located on the server side and ready to use methods while working with the server.
+Kylone provides an Endpoint API for developers to help creating a custom software to use with Kylone MicroCMS server including accessing and utilising several types of content related data located on server and ready to use methods while working with the server.
 
 Beside accessing and using such data easily while doing development of custom endpoint applications, the main purpose of the API is to maintain functionalities on both server and endpoint side and to be sure about the consistency of whole framework.
 
