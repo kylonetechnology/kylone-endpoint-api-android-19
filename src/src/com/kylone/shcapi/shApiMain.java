@@ -152,6 +152,7 @@ public class shApiMain {
    public native static String shgetapiversion();
    public native static int shcreate(String cachedir);
    public native static int shdelete();
+   public native static int shserverisready(String targethost, int timeout);
    public native static int shconnect(String targethost, int cache);
    public native static String shgetbannertext();
    public native static String shgetwoemodel();

@@ -394,7 +394,23 @@ public class MainActivity extends Activity {
             logoview.setVisibility(View.GONE);
             appback.setVisibility(View.GONE);
             menuback.setVisibility(View.GONE);
-            textview.setText("> re-loading content...\n");
+            textview.append("\n\n> re-loading content...\n");
+
+            if (!shApi.inetConnected(0).equals("yes")) {
+                feedback("! there is no network connectivity\n");
+                // required tasks should be implemented
+                return;
+            };
+
+            if (shApi.shserverisready(targetHost, 5) != shApi.SHC_OK) {
+                /*
+                  Server may still be doing boot or its services may not ready yet.
+                  Custom application may try it few more times and then may give up.
+                  Required tasks should be implemented
+                */
+                feedback("! server is not ready yet, should be tried later\n");
+                return;
+            };
 
             // Show a progress dialog
             progressdialog.setMessage("Loading Content");
