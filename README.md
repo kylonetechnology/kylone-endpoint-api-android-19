@@ -17,7 +17,7 @@ There is a demo application provided with the API. It is possible to compile usi
 	> JARSIGNER=/path/to/jarsigner ZIPALIGN=/path/to/zipalign ./build_demo.sh make
 
 In order to compile demo app, you may need to change (SDK dir) src/local.properties file.
-Demo application will be placed into bin folder after once compiled.
+Demo application will be placed into bin folder once compiled.
 
 ### Trademarks
 Products and Brands mentioned in this project are trademarks or registered trademarks of their respective holders.

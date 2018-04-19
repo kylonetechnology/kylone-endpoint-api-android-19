@@ -123,6 +123,7 @@ public class shApiMain {
    public static final String SHC_MESSAGE_BANNERTEXT = "import";
    public static final String SHC_MESSAGE_RESTART = "commit";
    public static final String SHC_MESSAGE_SUSPEND = "kill";
+   public static final String SHC_MESSAGE_RESUME = "resume";
    public static final String SHC_MESSAGE_REBOOTSYSTEM = "reboot";
    public static final String SHC_MESSAGE_FWUPDATE = "clean";
 

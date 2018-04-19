@@ -110,7 +110,10 @@ public class MainActivity extends Activity {
                   feedback("app-restart requested by server\n");
                } else
                if (msg.equals(shApi.SHC_MESSAGE_SUSPEND)) {
-                  feedback("suspending or quit requested by server\n");
+                  feedback("suspending requested by server\n");
+               } else
+               if (msg.equals(shApi.SHC_MESSAGE_RESUME)) {
+                  feedback("resuming requested by server\n");
                } else
                if (msg.equals(shApi.SHC_MESSAGE_REBOOTSYSTEM)) {
                   feedback("system-reboot requested by server\n");
