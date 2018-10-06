@@ -157,6 +157,9 @@ public class shApiMain {
    public native static int shconnect(String targethost, int cache);
    public native static String shgetbannertext();
    public native static String shgetwoemodel();
+   public native static String shdrmquery(String sys, String typ, String meth, String pmid, String uuid, String pcode);
+   public native static String shdrmquerydescr();
+   public native static String shdrmtokenize(String src, String uuid);
 
    /*
      Natice interface library is cLshcapi.so
