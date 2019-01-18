@@ -119,6 +119,11 @@ public class shApiMain {
       kill    Suspend (app may get suspended or quits, "commit" should restart it)
       reboot  Reboot the system
       clean   Update the firmware (custom application will update itself, cleans the cache etc.)
+      emerg   Emergency mode (*)
+      popup   Pop-Up message received for this STB.
+      insist  Bulk Pop-Up message received for all STBs in the system (*)
+      stbscr  Scrolling text message received for this STB (*)
+      txtscr  Bulk Scrolling Text message received for all STBs in the system (*)
    */
    public static final String SHC_MESSAGE_BANNERTEXT = "import";
    public static final String SHC_MESSAGE_RESTART = "commit";
@@ -126,6 +131,11 @@ public class shApiMain {
    public static final String SHC_MESSAGE_RESUME = "resume";
    public static final String SHC_MESSAGE_REBOOTSYSTEM = "reboot";
    public static final String SHC_MESSAGE_FWUPDATE = "clean";
+   public static final String SHC_MESSAGE_EMERGENCY = "emerg";
+   public static final String SHC_MESSAGE_POPUP = "popup";
+   public static final String SHC_MESSAGE_BULKPOPUP = "insmsg";
+   public static final String SHC_MESSAGE_SCROLL = "stbscr";
+   public static final String SHC_MESSAGE_BULKSCROLL = "txtscr";
 
    /*
       There are a few variables associated with data fetched from the server:
@@ -157,6 +167,7 @@ public class shApiMain {
    public native static int shconnect(String targethost, int cache);
    public native static String shgetbannertext();
    public native static String shgetwoemodel();
+   public native static String shgetremotedata(String msg);
    public native static String shdrmquery(String sys, String typ, String meth, String pmid, String uuid, String pcode);
    public native static String shdrmquerydescr();
    public native static String shdrmtokenize(String src, String uuid);
